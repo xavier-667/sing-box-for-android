@@ -54,7 +54,7 @@ fun getVersionProps(propName: String): String {
 }
 
 android {
-    namespace = "io.nekohasekai.sfa"
+    namespace = "io.surprise.sfa"
     compileSdk = 36
 
     ndkVersion = "28.0.13004108"
@@ -67,7 +67,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "io.nekohasekai.sfa"
+        applicationId = "io.surprise.sfa"
         minSdk = 21
         targetSdk = 35
         versionCode = getVersionProps("VERSION_CODE").toInt()
