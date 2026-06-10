@@ -3,11 +3,36 @@
 
     <style name="AppTheme" parent="AppTheme.Base" />
 
-    <style name="AppTheme.Base" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="AppTheme.Base" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">@color/cyan_bright</item>
+        <item name="colorOnPrimary">@color/navy_dark</item>
+        <item name="colorPrimaryContainer">@color/cyan_dark</item>
+        <item name="colorOnPrimaryContainer">@color/cyan_light</item>
+        <item name="colorSecondary">@color/cyan_bright</item>
+        <item name="colorOnSecondary">@color/navy_dark</item>
+        <item name="colorSecondaryContainer">@color/cyan_dark</item>
+        <item name="colorOnSecondaryContainer">@color/cyan_light</item>
+        <item name="colorTertiary">@color/cyan_light</item>
+        <item name="colorOnTertiary">@color/navy_dark</item>
+        <item name="colorTertiaryContainer">@color/cyan_dark</item>
+        <item name="colorOnTertiaryContainer">@color/cyan_bright</item>
+        <item name="colorError">#FFB3261E</item>
+        <item name="colorOnError">#FFFBFBFB</item>
+        <item name="colorErrorContainer">#FFF9DEDC</item>
+        <item name="colorOnErrorContainer">#FF410E0B</item>
+        <item name="colorBackground">@color/navy_dark</item>
+        <item name="colorOnBackground">@color/cyan_light</item>
+        <item name="colorSurface">@color/navy_medium</item>
+        <item name="colorOnSurface">@color/cyan_light</item>
+        <item name="colorSurfaceVariant">@color/navy_light</item>
+        <item name="colorOnSurfaceVariant">@color/cyan_bright</item>
+        <item name="colorOutline">@color/cyan_bright</item>
+        <item name="colorOutlineVariant">@color/cyan_dark</item>
+        <item name="scrimBackground">@color/navy_dark</item>
         <item name="bottomSheetDialogTheme">@style/BottomSheetDialogTheme</item>
     </style>
 
-    <style name="AppTheme.Translucent" parent="Theme.Material3.DayNight.Dialog.Alert">
+    <style name="AppTheme.Translucent" parent="Theme.Material3.Dark.Dialog.Alert">
         <item name="android:background">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -16,7 +41,12 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
-    <style name="BottomSheetDialogTheme" parent="Theme.Material3.DayNight.BottomSheetDialog">
-        <item name="android:navigationBarColor">?attr/colorSurfaceContainerLow</item>
+    <style name="BottomSheetDialogTheme" parent="Theme.Material3.Dark.BottomSheetDialog">
+        <item name="android:navigationBarColor">@color/navy_medium</item>
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+    
+    <style name="BottomSheetStyle" parent="Widget.Material3.BottomSheet">
+        <item name="android:background">@color/navy_medium</item>
     </style>
 </resources>
