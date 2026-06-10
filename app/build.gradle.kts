@@ -72,7 +72,12 @@ android {
         targetSdk = 35
         versionCode = getVersionProps("VERSION_CODE").toInt()
         versionName = getVersionProps("VERSION_NAME")
-        base.archivesName.set("SFA-${versionName}")
+        base.archivesName.set("SFA-universal-${versionName}")
+        
+        // Universal app supporting all architectures
+        ndk {
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64"))
+        }
     }
 
     signingConfigs {
@@ -106,12 +111,15 @@ android {
     productFlavors {
         create("play") {
             minSdk = 23
+            dimension = "vendor"
         }
         create("other") {
             minSdk = 23
+            dimension = "vendor"
         }
         create("otherLegacy") {
             minSdk = 21
+            dimension = "vendor"
         }
     }
 
@@ -130,12 +138,21 @@ android {
         }
     }
 
+    // Universal APK configuration - single APK with all architectures
     splits {
+        language {
+            isEnable = false
+        }
+        density {
+            isEnable = false
+        }
         abi {
             isEnable = true
-            isUniversalApk = true
             reset()
+            // Include all architectures in single APK
             include("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
+            // Generate universal APK instead of per-ABI splits
+            isUniversalApk = true
         }
     }
 
@@ -157,7 +174,20 @@ android {
 
     packaging {
         jniLibs {
+            // Include all native libraries in single APK
             useLegacyPackaging = true
+            pickFirsts.addAll(listOf(
+                "lib/armeabi-v7a/libc++_shared.so",
+                "lib/arm64-v8a/libc++_shared.so",
+                "lib/x86/libc++_shared.so",
+                "lib/x86_64/libc++_shared.so"
+            ))
+        }
+        resources {
+            excludes.addAll(listOf(
+                "META-INF/proguard/androidx-*.pro",
+                "META-INF/DEPENDENCIES"
+            ))
         }
     }
 
@@ -173,6 +203,8 @@ android {
             fileName = fileName.replace("-play", "-play")
             fileName = fileName.replace("-otherLegacy", "-legacy-android-5")
             fileName = fileName.replace("-other", "")
+            // Mark as universal APK
+            fileName = fileName.replace(".apk", "-universal.apk")
             output.outputFileName = fileName
         }
     }
